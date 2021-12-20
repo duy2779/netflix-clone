@@ -1,0 +1,53 @@
+.jumbotron {
+  border-bottom: 10px solid $darkGray;
+  color: $white;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem 0;
+
+    @include desktop {
+      flex-direction: row;
+    }
+
+    &--reverse {
+      @include desktop {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &__text {
+    text-align: center;
+
+    @include desktop {
+      width: 50%;
+      text-align: inherit;
+    }
+  }
+
+  &__title {
+    font-size: $text-xl;
+
+    @include tablet {
+      font-size: $text-2xl;
+      font-weight: $font-bold;
+      line-height: 1.1;
+    }
+    @include tablet {
+      font-size: $text-3xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $text-lg;
+    font-weight: normal;
+
+    @include tablet {
+      font-size: $text-xl;
+    }
+  }
+}

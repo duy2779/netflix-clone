@@ -1,0 +1,22 @@
+.accordions {
+  &__title {
+    font-size: $text-xl;
+    text-align: center;
+    color: white;
+
+    @include tablet {
+      margin-bottom: 3rem;
+    }
+
+    @include tablet {
+      font-size: $text-2xl;
+    }
+    @include desktop {
+      font-size: $text-3xl;
+    }
+  }
+
+  &__list > .accordion:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}

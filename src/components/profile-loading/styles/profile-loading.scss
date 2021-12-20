@@ -1,0 +1,42 @@
+.spinner {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-image: url("../../../assets/images/spinner.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: -160px;
+    margin-left: -85px;
+    width: 170px;
+    height: 170px;
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  img {
+    width: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -120px;
+    margin-left: -42px;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

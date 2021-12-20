@@ -1,0 +1,38 @@
+.footer {
+  color: $lightGray;
+
+  &__container {
+    padding-top: 4.5rem;
+    padding-bottom: 2.25rem;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    grid-gap: 1.5rem;
+
+    font-size: $text-xs;
+
+    @include tablet {
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+
+  &__copyright {
+    margin-top: 2rem;
+  }
+}

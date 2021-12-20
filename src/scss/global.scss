@@ -1,0 +1,63 @@
+@import "mixins";
+@import "variables";
+@import "animations";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoothing: grayscale;
+  background-color: $black;
+  color: $lightGray;
+  font-size: $text-sm;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: $lightGray;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 2.8rem;
+
+  @include desktop {
+    margin: 0 auto;
+  }
+}
+.container--mobile-fluid {
+  max-width: 1000px;
+
+  @include tablet {
+    margin: 0 2.8rem;
+  }
+  @include desktop {
+    margin: 0 auto;
+  }
+}

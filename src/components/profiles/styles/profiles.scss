@@ -1,0 +1,47 @@
+.profiles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+  &__container {
+    animation: 500ms scale-down ease-in-out;
+  }
+
+  &__title {
+    font-size: $text-4xl;
+    font-weight: normal;
+    color: $white;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    column-gap: 2.375rem;
+  }
+}
+
+.profile {
+  cursor: pointer;
+
+  &:hover > &__img {
+    border: 3px solid $white;
+  }
+
+  &:hover > &__name {
+    color: $white;
+  }
+
+  &__img {
+    max-width: 180px;
+    border-radius: 0.25rem;
+    border: 3px solid $black;
+  }
+
+  &__name {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: $text-xl;
+    font-weight: normal;
+  }
+}

@@ -1,0 +1,84 @@
+.accordion {
+  position: relative;
+  color: $white;
+
+  @include tablet {
+    width: 85%;
+    margin: 0 auto;
+  }
+  @include desktop {
+    width: 75%;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: $text-lg;
+    font-weight: normal;
+    padding: 0.9rem 2.475rem;
+    background: $midGray;
+    cursor: pointer;
+    user-select: none;
+
+    @include tablet {
+      padding: 1rem;
+    }
+    @include desktop {
+      padding: 1.25rem 2.475rem;
+      font-size: $text-xl;
+    }
+
+    &:before {
+      content: "+";
+      position: absolute;
+      right: 1rem;
+      font-size: 2.5rem;
+      font-weight: normal;
+      // transition: 0.25s;
+
+      @include desktop {
+        right: 2rem;
+      }
+    }
+  }
+
+  &__content {
+    font-size: $text-lg;
+    font-weight: normal;
+    max-height: 0;
+    overflow: hidden;
+
+    padding-right: 2.475rem;
+    padding-left: 2.475rem;
+    background: $midGray;
+
+    transition: 0.25s;
+
+    @include tablet {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+    @include desktop {
+      font-size: $text-xl;
+      padding-right: 2.475rem;
+      padding-left: 2.475rem;
+    }
+
+    p {
+      line-height: 1.3;
+    }
+  }
+
+  &.active &__content {
+    max-height: 1200px;
+    margin-top: 0.25rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  &.active &__title::before {
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+}
