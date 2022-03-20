@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 //components
 import HomeHero from '../components/home-hero'
 import Footer from '../components/footer'
@@ -8,11 +6,6 @@ import SubscribeSection from '../containers/subscribe-section'
 import Header from '../components/header';
 
 const Home = () => {
-    let navigate = useNavigate();
-
-    useEffect(() => {
-        navigate('browse');
-    }, [navigate])
 
     return (
         <>

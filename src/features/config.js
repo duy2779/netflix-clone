@@ -6,6 +6,19 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`;
 const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`;
+const UPCOMING_BASE_URL = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US`;
+const LATEST_BASE_URL = `${API_URL}movie/latest?api_key=${API_KEY}&language=en-US`;
+const TOP_RATED_BASE_URL = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US`;
+const GENRE_BASE_URL = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
+const MOVIES_BY_GENRES = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate`;
+
+export const movieById = movieId => {
+    return `${API_URL}movie/${movieId}?api_key=${API_KEY}`
+}
+
+export const creditsByMovie = movieId => {
+    return `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`
+}
 
 const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/';
 // Sizes: w300, w780, w1280, original
@@ -16,9 +29,14 @@ const POSTER_SIZE = 'w780';
 export {
     SEARCH_BASE_URL,
     POPULAR_BASE_URL,
+    UPCOMING_BASE_URL,
+    LATEST_BASE_URL,
+    TOP_RATED_BASE_URL,
     API_URL,
     API_KEY,
     IMAGE_BASE_URL,
     BACKDROP_SIZE,
     POSTER_SIZE,
+    MOVIES_BY_GENRES,
+    GENRE_BASE_URL
 };

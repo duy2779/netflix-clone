@@ -1,0 +1,14 @@
+.movie-grid__title {
+  color: $white;
+  font-size: $text-3xl;
+}
+
+.movie-grid {
+  .slider-item:nth-of-type(6n + 1) {
+    transform-origin: left;
+  }
+
+  .slider-item:nth-of-type(6n + 6) {
+    transform-origin: right;
+  }
+}

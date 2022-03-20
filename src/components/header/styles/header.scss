@@ -6,6 +6,18 @@
   background: transparent;
   z-index: 30;
   width: 100%;
+  transition: background-color 300ms linear;
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  &--with-bg {
+    background-color: $black;
+  }
 
   @include desktop {
     padding: 1.25rem 2.8rem;
@@ -53,6 +65,130 @@
     }
   }
 
+  &__nav {
+    position: relative;
+  }
+
+  &__nav-title {
+    color: $white;
+    font-weight: $font-bold;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      right: -20px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid $white;
+      @include centerYByPosition;
+    }
+
+    @include desktop {
+      display: none;
+    }
+
+    &:hover + .header__nav-list {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__nav-list {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    border: {
+      top: 2px solid $white;
+      bottom: 1px solid $midGray;
+      right: 1px solid $midGray;
+      left: 1px solid $midGray;
+    }
+    min-width: 300px;
+    z-index: 1;
+    background-color: $black;
+    @include centerXByPosition;
+    transition: all 300ms ease-in-out;
+
+    @include desktop {
+      margin-top: 0;
+      flex-direction: row;
+      visibility: visible;
+      border: none;
+      min-width: auto;
+      opacity: 1;
+      position: relative;
+      background-color: transparent;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      border-right: 8px solid transparent;
+      border-left: 8px solid transparent;
+      border-bottom: 8px solid $white;
+      @include centerXByPosition;
+
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__nav-item {
+    text-align: center;
+
+    &:first-child .header__nav-link {
+      padding-top: 0.75rem;
+
+      @include desktop {
+        padding-top: 0;
+      }
+    }
+    &:last-child .header__nav-link {
+      padding-bottom: 0.75rem;
+
+      @include desktop {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &__nav-link {
+    display: inline-block;
+    padding: 1rem 1rem;
+    width: 100%;
+    height: 100%;
+    color: $white;
+    transition: opacity 200ms ease;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &.active {
+      font-weight: $font-bold;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    @include desktop {
+      padding: 0 1rem;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   &__profiles {
     position: relative;
     margin-right: 26px;
@@ -76,6 +212,17 @@
       min-width: 200px;
       padding: 0.25rem 0;
       transition: all 300ms ease-in-out;
+      background-color: rgba(0, 0, 0, 0.75);
+
+      &:before {
+        content: "";
+        position: absolute;
+        width: 50%;
+        right: 0;
+        height: 25px;
+        top: -25px;
+        cursor: pointer;
+      }
     }
 
     &-item {

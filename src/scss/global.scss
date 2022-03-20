@@ -18,6 +18,7 @@ body {
   background-color: $black;
   color: $lightGray;
   font-size: $text-sm;
+  overflow-x: hidden;
 }
 
 img {
@@ -60,4 +61,16 @@ button {
   @include desktop {
     margin: 0 auto;
   }
+}
+
+.container--lg {
+  max-width: calc(100% - 5.6rem);
+}
+
+.transform-origin-left {
+  transform-origin: left;
+}
+
+.transform-origin-right {
+  transform-origin: right;
 }

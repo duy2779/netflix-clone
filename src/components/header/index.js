@@ -1,16 +1,41 @@
+import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Link, NavLink, useNavigate, createSearchParams, useLocation } from 'react-router-dom';
+import useStore from '../../hooks/useStore';
 //styles
 import './styles/header.scss';
 //data
 import usersData from '../../fixtures/users.json';
+import navbarData from '../../fixtures/header-navbar.json';
 //actions
 import { selectProfile } from '../../features/profileSlice';
+import { setPrevRoute } from '../../features/searchSlice'
 
-const Header = ({ children }) => {
+const Header = ({ children, fixed = false }) => {
+    const [hasBackgroundColor, setHasBackgroundColor] = useState(false);
+
+    const handleHeaderScroll = () => {
+        setHasBackgroundColor(window.pageYOffset > 73)
+    }
+
+    useEffect(() => {
+        if (fixed) {
+            if (typeof window !== 'undefined') {
+                window.addEventListener("scroll", handleHeaderScroll)
+            }
+        }
+
+        return () => {
+            window.removeEventListener("scroll", handleHeaderScroll)
+        }
+    }, [fixed])
+
     return (
-        <header className="header">
+        <header className={clsx("header", {
+            "header--fixed": fixed,
+            "header--with-bg": hasBackgroundColor
+        })}>
             {children}
         </header>
     )
@@ -39,6 +64,26 @@ Header.Login = function HeaderLogin() {
         <Link to="/signin" className="header__login-btn">
             <button className="header__btn">Sign In</button>
         </Link>
+    )
+}
+
+Header.Nav = function HeaderNav() {
+    return (
+        <nav className="header__nav">
+            <p className="header__nav-title">Browse</p>
+            <ul className="header__nav-list">
+                {navbarData.map(menu => (
+                    <li key={menu.id} className="header__nav-item">
+                        <NavLink
+                            to={menu.link}
+                            className={({ isActive }) => isActive ? 'header__nav-link active' : 'header__nav-link'}
+                        >
+                            {menu.title}
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     )
 }
 
@@ -76,27 +121,53 @@ Header.Profile = function HeaderProfile() {
 
 Header.Search = function HeaderSearch() {
     const [active, setActive] = useState(false);
-    const searchInput = useRef(null);
+    const [searchInput, setSearchInput] = useState("");
+    const { dispatch, state } = useStore()
+    const { prevRoute } = state.search
+    const searchInputRef = useRef(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.pathname !== "/search") {
+            dispatch(setPrevRoute(location.pathname));
+        }
+    }, [location.pathname, dispatch])
 
     const searchIconOnClick = () => {
         setActive(!active);
-        searchInput.current.focus();
+        searchInputRef.current.focus();
+    }
+
+    const handleSearchInputBlur = () => {
+        setActive(false)
+    }
+
+    const handleSearhInputChange = (e) => {
+        setSearchInput(e.target.value)
+        if (e.target.value === "") {
+            navigate(prevRoute)
+            return
+        }
+        navigate({ pathname: "/search", search: `?${createSearchParams({ q: e.target.value })}` })
     }
 
     return (
         <div className="header__search">
             <img
-                src="images/icons/search.png"
+                src="/images/icons/search.png"
                 alt="search"
                 className={`header__search-icon ${active ? 'active' : null}`}
                 onClick={searchIconOnClick}
             />
             <input
+                value={searchInput}
                 type="text"
                 placeholder="Titles, people, genres"
                 className={`header__search-input ${active ? 'active' : null}`}
-                ref={searchInput}
-                onBlur={() => setActive(false)}
+                ref={searchInputRef}
+                onChange={handleSearhInputChange}
+                onBlur={handleSearchInputBlur}
             />
         </div>
     )
