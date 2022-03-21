@@ -2,11 +2,10 @@ import useStore from '../hooks/useStore';
 //components
 import SelectProfile from '../components/profiles';
 import ProfileLoading from '../components/profile-loading';
-import HeaderWithNav from '../containers/header-with-nav';
 //other
 
 
-const PageWithHeader = ({ children }) => {
+const PrivatePage = ({ children }) => {
     const { state } = useStore()
     const { profile } = state
     const { profile: user } = profile
@@ -18,7 +17,6 @@ const PageWithHeader = ({ children }) => {
     ) : (
         profile.loading ? <ProfileLoading picture={user.picture} /> : (
             <>
-                <HeaderWithNav />
                 {
                     children
                 }
@@ -27,4 +25,4 @@ const PageWithHeader = ({ children }) => {
     )
 }
 
-export default PageWithHeader
+export default PrivatePage

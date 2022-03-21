@@ -7,7 +7,6 @@ import { getMoviesByGenre } from '../features/movieByGenreSlice';
 //components
 import SelectProfile from '../components/profiles';
 import ProfileLoading from '../components/profile-loading';
-import HeaderWithNav from '../containers/header-with-nav';
 import Footer from '../components/footer';
 
 import MovieGrid from '../components/movies-grid'

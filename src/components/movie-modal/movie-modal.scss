@@ -27,6 +27,10 @@
     background-color: $darkGray;
     animation: growth 300ms linear;
 
+    @media (min-width: 1024px) and (max-width: 1587px) {
+      width: 60vw;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }

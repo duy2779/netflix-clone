@@ -1,5 +1,5 @@
 .header {
-  position: absolute;
+  position: static;
   display: flex;
   align-items: center;
   padding: 1.25rem 1rem;
@@ -13,10 +13,18 @@
     top: 0;
     right: 0;
     left: 0;
+
+    @include tablet {
+      position: fixed !important;
+    }
   }
 
   &--with-bg {
     background-color: $black;
+  }
+
+  @include tablet {
+    position: absolute;
   }
 
   @include desktop {
@@ -298,7 +306,20 @@
       opacity: 1;
       border: 1px solid $white;
       padding-left: 35px;
-      width: 250px;
+      position: fixed;
+      right: 10px;
+      left: 10px;
+      width: 95vw;
+      background-color: $black;
+      z-index: 1;
+
+      @include tablet {
+        position: static;
+        width: 250px;
+        right: auto;
+        left: auto;
+        background: rgba(0, 0, 0, 0.75);
+      }
     }
   }
 }

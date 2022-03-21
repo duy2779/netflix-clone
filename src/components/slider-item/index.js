@@ -29,10 +29,7 @@ const SliderItem = ({ movie, index }) => {
 
 
     return (
-        <div className={clsx("slider-item", {
-            "transform-origin-left": (index === 0 || index === 6 || index === 12),
-            "transform-origin-right": (index === 5 || index === 11 || index === 17),
-        })}>
+        <div className={clsx("slider-item")}>
             <div
                 className="slider-item__img"
                 style={{

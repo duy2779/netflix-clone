@@ -17,7 +17,7 @@ import './slider.scss'
 // components
 import SliderItem from '../slider-item'
 
-const Slider = ({ movies, title, genreId }) => {
+const Slider = ({ movies, title, genreId, link }) => {
     const [hasExpanded, setHasExpanded] = useState(false);
     const toggleHover = () => setHasExpanded(!hasExpanded)
 
@@ -27,15 +27,44 @@ const Slider = ({ movies, title, genreId }) => {
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
         >
-            <Link to={genreId ? `/browse/genre/${genreId}` : "/"} className="slider__title">{title}</Link>
+            <Link to={genreId ? `/browse/genre/${genreId}` : link} className="slider__title">{title}</Link>
             <Swiper
-                allowTouchMove={false}
+                allowTouchMove={true}
                 spaceBetween={10}
                 speed={1000}
-                slidesPerView={6}
-                slidesPerGroup={6}
+                slidesPerView={1}
+                slidesPerGroup={1}
                 navigation={true}
                 modules={[Navigation]}
+                breakpoints={{
+                    // when window width is >= 640px
+                    500: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2,
+                        navigation: false,
+                    },
+                    // when window width is >= 768px
+                    768: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3,
+                        navigation: false,
+                    },
+                    1288: {
+                        slidesPerView: 4,
+                        slidesPerGroup: 4,
+                        allowTouchMove: false,
+                    },
+                    1588: {
+                        slidesPerView: 5,
+                        slidesPerGroup: 5,
+                        allowTouchMove: false,
+                    },
+                    1886: {
+                        slidesPerView: 6,
+                        slidesPerGroup: 6,
+                        allowTouchMove: false,
+                    },
+                }}
             >
                 {
                     movies.map((movie, index) => (

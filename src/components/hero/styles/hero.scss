@@ -28,7 +28,15 @@
     }
 
     &--full-height {
-      height: 100vh;
+      height: 50vh;
+
+      @include tablet {
+        height: 70vh;
+      }
+
+      @include desktop {
+        height: 100vh;
+      }
     }
   }
 

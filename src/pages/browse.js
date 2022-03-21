@@ -72,9 +72,9 @@ const Browse = () => {
                             <>
                                 <BrowseHero movie={moviePopular.movies[0]} />
                                 <div className="container container--lg">
-                                    <Slider movies={moviePopular.movies.slice(1, -1)} title="Trending Now" />
-                                    <Slider movies={movieUpComing.movies.slice(0, -2)} title="Up Coming" />
-                                    <Slider movies={movieTopRated.movies.slice(0, -2)} title="Top Rated" />
+                                    <Slider movies={moviePopular.movies.slice(1, -1)} title="Trending Now" link={"/browse/popular"} />
+                                    <Slider movies={movieUpComing.movies.slice(0, -2)} title="Up Coming" link={"/browse/up-coming"} />
+                                    <Slider movies={movieTopRated.movies.slice(0, -2)} title="Top Rated" link={"/browse/top-rated"} />
                                     {
                                         Object.keys(movieByGenre.movies).map((item, index) => (
                                             <Slider

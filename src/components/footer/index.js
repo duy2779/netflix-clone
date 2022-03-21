@@ -69,7 +69,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <p className="footer__copyright">Netflix Vietnam</p>
+                <p className="footer__copyright">ReactJs With &hearts;</p>
             </div>
         </section>
     )

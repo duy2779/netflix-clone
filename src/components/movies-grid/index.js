@@ -1,16 +1,23 @@
 import Grid from '../grid';
 import SliderItem from '../slider-item';
 import "./movies-grid.scss"
+import { useState, useEffect } from 'react';
 
 const MoviesGrid = ({ movies, name }) => {
+    const [newMovies, setNewMovies] = useState(null)
+
+    useEffect(() => {
+        setNewMovies(() => movies?.filter(m => m.backdrop_path !== null))
+    }, [movies])
+
     return (
         <div className="movie-grid">
-            <h1 className="movie-grid__title">{name && name}</h1>
+            {name && <h1 className="movie-grid__title">{name}</h1>}
             {
-                movies && (
+                newMovies && (
                     <Grid>
                         {
-                            movies.slice(0, -4).map(movie => (
+                            newMovies.map(movie => (
                                 <SliderItem movie={movie} key={movie.id} />
                             ))
                         }

@@ -7,21 +7,16 @@
     {
         "id": 2,
         "title": "Popular",
-        "link": "/popular"
+        "link": "/browse/popular"
     },
     {
         "id": 3,
-        "title": "New",
-        "link": "/new"
+        "title": "Top Rated",
+        "link": "/browse/top-rated"
     },
     {
         "id": 4,
-        "title": "TV Shows",
-        "link": "/tvshow"
-    },
-    {
-        "id": 5,
-        "title": "Movies",
-        "link": "/movies"
+        "title": "Up Coming",
+        "link": "/browse/up-coming"
     }
 ]

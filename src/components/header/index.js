@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
-import { Link, NavLink, useNavigate, createSearchParams, useLocation } from 'react-router-dom';
+import { Link, NavLink, useNavigate, createSearchParams, useLocation, useSearchParams } from 'react-router-dom';
 import useStore from '../../hooks/useStore';
 //styles
 import './styles/header.scss';
@@ -122,6 +122,8 @@ Header.Profile = function HeaderProfile() {
 Header.Search = function HeaderSearch() {
     const [active, setActive] = useState(false);
     const [searchInput, setSearchInput] = useState("");
+    let [searchParams] = useSearchParams();
+    const query = searchParams.get('q')
     const { dispatch, state } = useStore()
     const { prevRoute } = state.search
     const searchInputRef = useRef(null);
@@ -129,7 +131,16 @@ Header.Search = function HeaderSearch() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (location.pathname !== "/search") {
+        if (query) {
+            setActive(true);
+            searchInputRef.current.focus();
+            setSearchInput(query);
+        }
+        // eslint-disable-next-line
+    }, [query])
+
+    useEffect(() => {
+        if (location.pathname !== "/search" && !location.pathname.startsWith("/browse/movie")) {
             dispatch(setPrevRoute(location.pathname));
         }
     }, [location.pathname, dispatch])
@@ -139,8 +150,12 @@ Header.Search = function HeaderSearch() {
         searchInputRef.current.focus();
     }
 
-    const handleSearchInputBlur = () => {
-        setActive(false)
+    const handleSearchInputBlur = (e) => {
+        if (searchInput) {
+            e.preventDefault();
+            return
+        }
+        setActive(!active);
     }
 
     const handleSearhInputChange = (e) => {
