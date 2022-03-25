@@ -9,15 +9,26 @@
   }
 
   &__title {
-    font-size: $text-4xl;
+    font-size: $text-xl;
     font-weight: normal;
     color: $white;
     text-align: center;
+
+    @include tablet {
+      font-size: $text-4xl;
+    }
   }
 
   &__list {
     display: flex;
-    column-gap: 2.375rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    @include tablet {
+      gap: 2.375rem;
+    }
   }
 }
 
@@ -33,15 +44,23 @@
   }
 
   &__img {
-    max-width: 180px;
+    max-width: 100px;
     border-radius: 0.25rem;
     border: 3px solid $black;
+
+    @include tablet {
+      max-width: 180px;
+    }
   }
 
   &__name {
     text-align: center;
     margin-top: 0.75rem;
-    font-size: $text-xl;
+    font-size: $text-lg;
     font-weight: normal;
+
+    @include tablet {
+      font-size: $text-xl;
+    }
   }
 }
