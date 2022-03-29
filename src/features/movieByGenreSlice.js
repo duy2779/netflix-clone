@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { MOVIES_BY_GENRES } from './config'
+import tmdbApi from 'api/tmdbApi';
 
 const initialState = {
     movies: {},
@@ -13,8 +12,9 @@ export const getMoviesByGenre = createAsyncThunk(
     'movieByGenre/getMoviesByGenre',
     async ({ genreId, genreName, page }, thunkAPI) => {
         try {
-            const response = await axios.get(MOVIES_BY_GENRES + `&page=${page}&with_genres=${genreId}`)
-            return { genreName, genreId, payload: response.data }
+            const params = { page, with_genres: genreId };
+            const data = await tmdbApi.getMoviesByGenre({ params })
+            return { genreName, genreId, payload: data }
 
         } catch (error) {
             console.log(error)

@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import MovieModal from './components/movie-modal'
-import HeaderWithNav from './containers/header-with-nav';
-import Search from './pages/search';
+import Search from 'pages/search';
+import HeaderWithNav from 'containers/header-with-nav';
+import MovieModal from 'components/movie-modal';
 //pages
 const Home = lazy(() => import('./pages/home'));
 const Signin = lazy(() => import('./pages/signin'));

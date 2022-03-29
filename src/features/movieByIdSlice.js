@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { movieById, creditsByMovie } from './config'
+import tmdbApi from 'api/tmdbApi';
 
 const initialState = {
     movie: {},
@@ -14,12 +13,12 @@ export const getMovieById = createAsyncThunk(
     'movieById/getMovieById',
     async ({ movieId }, thunkAPI) => {
         try {
-            const response = await axios.get(movieById(movieId));
-            return response.data
+            const data = await tmdbApi.getMovieDetail(movieId)
+            return data
 
         } catch (error) {
             console.log(error)
-            return thunkAPI.rejectWithValue(error.response.data)
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )
@@ -28,12 +27,12 @@ export const getCreditsByMovie = createAsyncThunk(
     'movieById/getCreditsByMovie',
     async ({ movieId }, thunkAPI) => {
         try {
-            const response = await axios.get(creditsByMovie(movieId));
-            return response.data
+            const data = await tmdbApi.getCredits(movieId);
+            return data
 
         } catch (error) {
             console.log(error)
-            return thunkAPI.rejectWithValue(error.response.data)
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )

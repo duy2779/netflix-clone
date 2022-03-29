@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { SEARCH_BASE_URL } from './config'
+import tmdbApi from 'api/tmdbApi';
 
 const initialState = {
     moviesData: {},
@@ -14,8 +13,9 @@ export const getMovies = createAsyncThunk(
     'search/getMovies',
     async ({ query, page }, thunkAPI) => {
         try {
-            const response = await axios.get(SEARCH_BASE_URL + query + '&page' + page)
-            return response.data
+            const params = { query, page }
+            const data = await tmdbApi.search({ params })
+            return data
 
         } catch (error) {
             console.log(error)

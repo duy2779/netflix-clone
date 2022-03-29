@@ -8,7 +8,7 @@ import { getMovieById, getCreditsByMovie, clearData, resetStatus } from '../../f
 // scss
 import './movie-modal.scss'
 // other
-import { IMAGE_BASE_URL } from '../../features/config'
+import apiConfig from 'api/apiConfig'
 
 const MovieModal = () => {
     let navigate = useNavigate();
@@ -47,7 +47,7 @@ const MovieModal = () => {
             <div className="modal__content">
                 <div
                     className="modal__movie-hero"
-                    style={{ backgroundImage: `url(${IMAGE_BASE_URL}w1280${movie.backdrop_path})` }}
+                    style={{ backgroundImage: `url(${apiConfig.originalImage(movie.backdrop_path)})` }}
                 >
                     <h2 className="modal__movie-title">{movie.title}</h2>
                 </div>

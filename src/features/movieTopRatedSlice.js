@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { TOP_RATED_BASE_URL } from './config'
+import tmdbApi from 'api/tmdbApi';
 
 const initialState = {
     movies: [],
@@ -13,12 +12,13 @@ export const getTopRatedMovies = createAsyncThunk(
     'movieTopRated/getTopRatedMovies',
     async (thunkAPI) => {
         try {
-            const response = await axios.get(TOP_RATED_BASE_URL)
-            return response.data
+            const params = {}
+            const data = await tmdbApi.getMoviesList("top_rated", { params })
+            return data
 
         } catch (error) {
             console.log(error)
-            return thunkAPI.rejectWithValue(error.response.data)
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )

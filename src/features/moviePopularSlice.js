@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { UPCOMING_BASE_URL } from './config'
+import tmdbApi from 'api/tmdbApi';
 
 const initialState = {
     movies: [],
@@ -13,12 +12,13 @@ export const getPopularMovies = createAsyncThunk(
     'moviePopular/getPopularMovie',
     async (thunkAPI) => {
         try {
-            const response = await axios.get(UPCOMING_BASE_URL)
-            return response.data
+            const params = {}
+            const data = await tmdbApi.getMoviesList("popular", { params })
+            return data
 
         } catch (error) {
             console.log(error)
-            return thunkAPI.rejectWithValue(error.response.data)
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )

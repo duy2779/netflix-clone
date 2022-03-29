@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { GENRE_BASE_URL } from './config'
+import tmdbApi from 'api/tmdbApi';
 
 const initialState = {
     genres: [],
@@ -13,12 +12,11 @@ export const getGenres = createAsyncThunk(
     'genres/getGenres',
     async (thunkAPI) => {
         try {
-            const response = await axios.get(GENRE_BASE_URL)
-            return response.data
-
+            const data = await tmdbApi.getGenres()
+            return data
         } catch (error) {
             console.log(error)
-            return thunkAPI.rejectWithValue(error.response.data)
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )

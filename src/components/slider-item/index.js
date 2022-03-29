@@ -1,4 +1,3 @@
-import { IMAGE_BASE_URL } from '../../features/config'
 import clsx from 'clsx'
 import Button from '../button'
 import useStore from '../../hooks/useStore'
@@ -6,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 // scss
 import './slider-item.scss'
+import apiConfig from 'api/apiConfig'
 
 const SliderItem = ({ movie, index }) => {
     const { state } = useStore()
@@ -33,7 +33,7 @@ const SliderItem = ({ movie, index }) => {
             <div
                 className="slider-item__img"
                 style={{
-                    backgroundImage: `url(${IMAGE_BASE_URL}w1280${movie.backdrop_path})`
+                    backgroundImage: `url(${apiConfig.w500Image(movie.backdrop_path)})`
                 }}
             >
                 <p className="slider-item__title">{movie.title}</p>
